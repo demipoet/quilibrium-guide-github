@@ -139,5 +139,16 @@ Scroll until the end of the file, and insert the following in new lines at the e
 net.core.rmem_max=600000000
 net.core.wmem_max=600000000
 ```
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return on the keyboard<br />
+Run:
+```
+sudo  sysctl  -p
+```
+Reboot your VPS
+```
+reboot
+```
+## Clone the Quilibrium CeremonyClient Repository
 
 
