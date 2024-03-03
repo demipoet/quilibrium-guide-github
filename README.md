@@ -12,6 +12,7 @@ III. [Prerequisite software](#iii-prerequisite-software)<br />
 IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
 V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
 VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional)<br />
+VII. [Configure your Node Network Firewall](#vii-configure-your-node-network-firewall)<br />
 VIII. [Configure your config.yml](#viii-configure-your-configyml)<br />
 
 ## I. Secure your Node hardware (VPS)
@@ -213,6 +214,7 @@ sudo ufw status
 ```
 
 Response for the status command should be:
+```
 > To            Action            From
 > --            ------            -----
 > 22            ALLOW             Anywhere
@@ -221,7 +223,7 @@ Response for the status command should be:
 > 22 (v6)       ALLOW             Anywhere (v6)
 > 8336 (v6)     ALLOW             Anywhere (v6)
 > 443 (v6)      ALLOW             Anywhere (v6)
-
+```
 
 ## VIII. Configure your config.yml
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)
