@@ -1,3 +1,5 @@
+ <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
 # Beginner’s Guide - How to Setup a Quilibrium CeremonyClient node - Dawn
 
 ## Secure your Node hardware (VPS)
