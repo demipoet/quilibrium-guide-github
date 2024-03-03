@@ -42,7 +42,7 @@ Put your IP address into terminal client & click open Click "Accept" Type "root"
 SSH into your VPS <br />
 
 ## II. SSH for the first time to your new VPS
-[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 To SSH into a VPS, run:
 ```
 ssh root@<ip_address_of_VPS>
@@ -135,7 +135,7 @@ It must show:
 > go version go1.20.14 linux/amd64
 
 ## IV. Configure Linux network device settings
-[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 Purpose: to optimize throughput (bandwidth) and latency for large parallel jobs typical of networks like Q<br />
 
 Run:
@@ -167,7 +167,7 @@ ssh root@<ip_address_of_VPS>
 Enter the root password<br />
 
 ## V. Clone the Quilibrium CeremonyClient Repository
-[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 Run:
 ```
 cd ~
@@ -178,7 +178,7 @@ Go to the ceremonyclient/node folder
 cd ceremonyclient/node
 ```
 ## VI. Import your voucher hex (optional)
-[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
 Run:
 ```
