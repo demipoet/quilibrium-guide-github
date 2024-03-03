@@ -6,7 +6,7 @@
 
 #### My recommendations
 
-Hostinger.com (My referral link)
+Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))
 I recommend getting the KVM8 for Dawn
 In USD - KVM 8 costs $18.30/mo 
 
