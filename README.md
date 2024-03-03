@@ -1,7 +1,9 @@
  <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
 # Beginners' Guide - How to Setup a Quilibrium CeremonyClient node
-Current Version: 1.14.0 (Sunset) as of March 3, 2024
+Created by Demipoet. Let's connect at [Farcaster](https://warpcast.com/demipoet)! ... Don't have Farcaster account yet? Create your FC account [here](https://warpcast.com/~/invite-page/272717?id=1f9087d2).<br /><br />
+Current Version: 1.14.0 (Sunset) as of March 3, 2024<br />
+Want to refer to the old PDF Guide: [link](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
 
 ## Table of Contents
 I. [Secure your Node hardware (VPS)](#i-secure-your-node-hardware-vps)<br />
@@ -9,7 +11,8 @@ II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-
 III. [Prerequisite software](#iii-prerequisite-software)<br />
 IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
 V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
-VI. [Import your Voucher Hex](#v-import-your-voucher-hex-optional)<br />
+VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional)<br />
+VIII. [Configure your config.yml](#viii-configure-your-configyml)<br />
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -192,4 +195,54 @@ Run:
 ```
 GOEXPERIMENT=arenas  go  run  ./...  -import-priv-key  `cat /root/voucher.hex`
 ```
+Take note of your Peer ID. It will be one of the last lines in the response, starts with 'Qm' with a label Peer ID.
+
+## VII. Configure your Node Network Firewall
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
+Run:
+```
+sudo ufw enable
+```
+Type `y` and press `enter` or `return` on keyboard
+Run:
+```shell
+sudo ufw allow 22
+sudo ufw allow 8336
+sudo ufw allow 443
+sudo ufw status
+```
+
+Response for the status command should be:
+> To            Action            From
+> --            ------            -----
+> 22            ALLOW             Anywhere
+> 8336          ALLOW             Anywhere
+> 443           ALLOW             Anywhere
+> 22 (v6)       ALLOW             Anywhere (v6)
+> 8336 (v6)     ALLOW             Anywhere (v6)
+> 443 (v6)      ALLOW             Anywhere (v6)
+
+
+## VIII. Configure your config.yml
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)
+### Enable gRPC to enable gRPC Function Calls for your Node
+
+<b>Note</b>: This interface, while read-only, is unauthenticated and not rate-limited. It is recommended that you only enable them if you are properly controlling access via firewall or only query via localhost (i.e. if port 8337 is used for gRPC calls, best not to allow it on your firewall configuration later and only trigger gRPC calls on localhost).<br/><br/>
+
+Go to ceremonyclient/node folder. <br/>
+```
+cd ~/ceremonyclient/node
+```
+Run:
+```shell
+sudo vim  .config/config.yml
+```
+Press `i` to start inserting text into config.yml file<br />
+On the line, right about the end of file, there is a field `listenGrpcMultiaddr: “”`, replace it with 
+```shell
+listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337
+```
+
+
+
 
