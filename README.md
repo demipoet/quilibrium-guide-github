@@ -7,6 +7,9 @@ Current Version: 1.14.0 (Sunset) as of March 3, 2024
 I. [Secure your Node hardware (VPS)](#i-secure-your-node-hardware-vps)<br />
 II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-new-vps)<br />
 III. [Prerequisite software](#iii-prerequisite-software)<br />
+IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
+V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
+VI. [Import your Voucher Hex](#v-import-your-voucher-hex-optional)<br />
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -174,7 +177,8 @@ Go to the ceremonyclient/node folder
 ```
 cd ceremonyclient/node
 ```
-## V. Import your voucher hex (optional)
+## VI. Import your voucher hex (optional)
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
 Run:
 ```
