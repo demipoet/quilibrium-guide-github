@@ -41,6 +41,7 @@ ssh root@<ip_address_of_VPS>
 > ED25519 key fingerprint is SHA256:xxxxxxx<br />
 > This key is not known by another names<br />
 > Are you sure you want to continue connecting (yes/no/\[fingerprint\])?
+
 ```
 yes
 ```
