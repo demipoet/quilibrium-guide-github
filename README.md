@@ -21,6 +21,11 @@ IX. [Safekeep the `Q Wallet` Private Key and Encryption Key](#ix-safekeep-the-q-
 &emsp; 2. [config.yml](#2-configyml)<br/>
 X. [Build the `node` Binary in `/root/go/bin` Folder](#x-build-the-node-binary-in-rootgobin-folder)<br/>
 XI. [Create System Service for your Q Node](#xi-create-system-service-for-your-q-node)<br/>
+XII. [Monitor trace/info logs of your Q Node service](#xii-monitor-traceinfo-logs-of-your-q-node-service)<br/>
+XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-service-commands)<br/>
+&emsp; 1. [Start your Q Node](#1-start-your-q-node)<br/>
+&emsp; 2. [Stop your Q Node](#2-stop-your-q-node)<br/>
+&emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -28,9 +33,9 @@ XI. [Create System Service for your Q Node](#xi-create-system-service-for-your-q
 
 #### My recommendations
 
-Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))
-I recommend getting the KVM8 for Dawn
-In USD - KVM 8 costs $18.30/mo 
+Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))<br/>
+I recommend getting the KVM8 for Dawn<br/>
+In USD - KVM 8 costs $18.30/mo <br/>
 
 ### 2. After buying, go to [Hostinger VPS Plans](https://hpanel.hostinger.com/servers/plans)
 Select KVM 8 only. KVM 2 will not work for the Quilibrium Dawn testnet looks to be especially different from other networks so this requires KVM 8 😉 <br /> It requires if VPS at least 8vCPU Cores and 16GB  RAM
@@ -335,16 +340,16 @@ It must show
 
 Doing this step allows your node to be run as a system service, whereas in case your node shuts down or gets signal killed for whatever reason, the service will enable auto-restarting your node.<br/><br/>
 
+The name of the system service we will make is called `ceremonyclient`<br/>
 Run:
 ```
 sudo vim /lib/systemd/system/ceremonyclient.service
 ```
 Press `i` to start inserting text into ceremonyclient.service file<br />
 Copy and paste the following lines inside the file
-```shell
+```text
 [Unit]
 Description=Ceremony Client Go App Service
-
 
 [Service]
 Type=simple
@@ -354,9 +359,43 @@ WorkingDirectory=/root/ceremonyclient/node
 Environment=GOEXPERIMENT=arenas
 ExecStart=/root/go/bin/node ./...
 
-
 [Install]
 WantedBy=multi-user.target
 ```
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
+
+## XII. Monitor trace/info logs of your Q Node service
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/><br/>
+
+Run:
+```
+sudo journalctl -u ceremonyclient.service -f --no-hostname -o cat
+```
+While the `ceremonyclient` system service is not started, nothing will be shown and that is okay<br/>
+Just maintain this terminal window while you use another window to start your service (in next [Section XIII.1](#1-start-your-q-node))
+
+## XIII. Control your Q Node via service commands
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+### 1. Start your Q Node
+Run:
+```
+service ceremonyclient start
+```
+<b>Note #1</b>: If you have the monitoring window on [Section XII](#xii-monitor-traceinfo-logs-of-your-q-node-service) open, you will notice after executing this start command that your Q Node will start up<br/><br/>
+
+<b>Note #2</b>: If you [Section VI](#vi-import-your-voucher-hex-optional) above, please take note of your Peer ID on the logs shown in monitoring window<br/><br/>
+
+### 2. Stop your Q Node
+Run:
+```
+service ceremonyclient stop
+```
+
+### 3. Look at status of your Q Node
+Run:
+```
+service ceremonyclient status
+```
+
+
