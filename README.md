@@ -36,11 +36,11 @@ XVI. [FAQ](#xvi--faq)<br/>
 
 #### My recommendations
 
-Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))<br/>
+#### Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))<br/><br/>
 I recommend getting the KVM8 for Dawn<br/>
 In USD - KVM 8 costs $18.30/mo <br/>
 
-### 2. After buying, go to [Hostinger VPS Plans](https://hpanel.hostinger.com/servers/plans)
+##### After buying, go to [Hostinger VPS Plans](https://hpanel.hostinger.com/servers/plans)
 Select KVM 8 only. KVM 2 will not work for the Quilibrium Dawn testnet looks to be especially different from other networks so this requires KVM 8 😉 <br /> It requires if VPS at least 8vCPU Cores and 16GB  RAM
 
 > 8 vCPU Core<br />
@@ -50,12 +50,12 @@ Select KVM 8 only. KVM 2 will not work for the Quilibrium Dawn testnet looks to 
 > 1 Snapshot<br />
 > Weekly Backups<br />
 
-### 3. You can select a plan duration (monthly/yearly) after selecting KVM 8 
+##### You can select a plan duration (monthly/yearly) after selecting KVM 8 
 Then link your card to pay or pay with crypto <br />
 Note that the discounted rate may only be available on the yearly plan<br />
 Then follow installation instructions<br />
 
-### 4. Connect to your VPS 
+### 2. Connect to your VPS 
 Downloading and install PuTTY: http://putty.org/  or just use your Terminal if you are running MacOS or Linux <br />
 Put your IP address into terminal client & click open Click "Accept" Type "root" & click enter Type your password & click enter <br />
 SSH into your VPS <br />
