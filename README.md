@@ -5,6 +5,8 @@ Current Version: 1.14.0 (Sunset) as of March 3, 2024
 
 ## Table of Contents
 I. [Secure your Node hardware (VPS)](#i-secure-your-node-hardware-vps)
+II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-new-vps)
+III. [Prerequisite software](#iii-prerequisite-software)
 
 ## I. Secure your Node hardware (VPS)
 
