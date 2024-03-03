@@ -9,7 +9,7 @@ II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-
 III. [Prerequisite software](#iii-prerequisite-software)<br />
 
 ## I. Secure your Node hardware (VPS)
-
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 ### 1. Get a VPS running Ubuntu 22.04
 
 #### My recommendations
@@ -39,6 +39,7 @@ Put your IP address into terminal client & click open Click "Accept" Type "root"
 SSH into your VPS <br />
 
 ## II. SSH for the first time to your new VPS
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 To SSH into a VPS, run:
 ```
 ssh root@<ip_address_of_VPS>
@@ -63,7 +64,7 @@ ssh root@<ip_address_of_VPS>
 Enter the root password.
 
 ## III. Prerequisite software
-
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 ### 1. Use root user for this installation
 Make sure you are using the root user as this guide is tailored 
 
@@ -131,7 +132,7 @@ It must show:
 > go version go1.20.14 linux/amd64
 
 ## IV. Configure Linux network device settings
-
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 Purpose: to optimize throughput (bandwidth) and latency for large parallel jobs typical of networks like Q<br />
 
 Run:
@@ -161,7 +162,9 @@ SSH into your VPS again:
 ssh root@<ip_address_of_VPS>
 ```
 Enter the root password<br />
+
 ## Clone the Quilibrium CeremonyClient Repository
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 Run:
 ```
 cd ~
