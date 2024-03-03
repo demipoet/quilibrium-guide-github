@@ -26,6 +26,9 @@ XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-s
 &emsp; 1. [Start your Q Node](#1-start-your-q-node)<br/>
 &emsp; 2. [Stop your Q Node](#2-stop-your-q-node)<br/>
 &emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
+XIV. [Upgrading your Q Node to latest release](#xiv--upgrading-your-q-node-to-latest-release)<br/>
+XV. [Using gRPCurl For More Information on Q Network](#xv--using-grpcurl-for-more-information-on-q-network)<br/>
+XVI. [FAQ](#xvi--faq)<br/>
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -196,6 +199,7 @@ cd ceremonyclient/node
 ## VI. Import your voucher hex (optional)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
+If you do not have a voucher, skip this section<br/>
 Run:
 ```
 sudo vim /root/voucher.hex
@@ -384,7 +388,7 @@ service ceremonyclient start
 ```
 <b>Note #1</b>: If you have the monitoring window on [Section XII](#xii-monitor-traceinfo-logs-of-your-q-node-service) open, you will notice after executing this start command that your Q Node will start up<br/><br/>
 
-<b>Note #2</b>: If you [Section VI](#vi-import-your-voucher-hex-optional) above, please take note of your Peer ID on the logs shown in monitoring window<br/><br/>
+<b>Note #2</b>: If you skipped [Section VI](#vi-import-your-voucher-hex-optional) above, please take note of your Peer ID on the logs shown in monitoring window<br/><br/>
 
 ### 2. Stop your Q Node
 Run:
@@ -397,5 +401,212 @@ Run:
 ```
 service ceremonyclient status
 ```
+
+## XIV.  Upgrading your Q Node to latest release
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+First, run:
+```
+service ceremonyclient status
+```
+Press `ctrl` + `c` on your keyboard twice, to exit the status section in the terminal<br/>
+If the response says service is Inactive, proceed to git fetch command below. <br/>
+If response says service is Active, run: 
+```
+service ceremonyclient stop
+```
+<br/><br/>
+Go to ceremonyclient folder. <br/>
+```
+cd ~/ceremonyclient
+```
+Check whether some files are updated in the ceremonyclient git repo, run:
+```
+git fetch origin
+```
+If there are files shown that are changed or different from your local copy, run:
+```
+git merge origin
+```
+Go to ceremonyclient/node folder. <br/>
+```
+cd ~/ceremonyclient/node
+```
+Next, do a `go clean` command to clear all previous build files. Run:
+```
+GOEXPERIMENT=arenas go clean -v -n -a ./...
+```
+Next, remove the compiled go binary file `node`, run:
+```
+rm /root/go/bin/node
+ls /root/go/bin
+```
+The `ls` command should respond empty<br/>
+
+<br/><br/>
+Next, make a new build compiled binary file `node`, run:
+```
+GOEXPERIMENT=arenas  go  install  ./...
+```
+Verify that the `node` binary is built again, run:
+```
+ls /root/go/bin
+```
+Response should show
+> node
+
+Lastly, start your Q Node via the service command, run:
+```
+service ceremonyclient start
+```
+
+## XV.  Using gRPCurl For More Information on Q Network
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+
+<b>Note</b>: This section is not part of the installation or setup process for the Q Node. The commands within this section are used only after you have successfully completed the steps above and you just want to query for more information about your Q Node.
+
+<b>Reference</b>: https://github.com/mscurtescu/ceremonyclient/wiki/gRPCurl-How-To
+
+### Installation
+
+There are many ways to install gRPCurl (brew, docker, Go) and since we already have installed Go you may install gRPCurl from the source package<br/>
+Run:
+```
+go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+```
+The command above takes care of installing the command in the bin sub-folder of $GOPATH<br/>
+Verify your installation works, run:
+```
+grpcurl -help
+```
+As long as the terminal does not say unknown command, but something else, you have successfully installed gRPCurl
+
+### Available gRPC Functions to call on your Q Node
+
+#### Get Node Info
+Run: 
+```
+grpcurl -plaintext localhost:8337 quilibrium.node.node.pb.NodeService.GetNodeInfo
+```
+Response:
+```
+{
+  "peerId": "QmBgOwjQo6a12345Aq1fvc6wJ3xnTXNTzOLDLwFHyabcde==",
+  "maxFrame": "7658"
+}
+```
+
+#### Get Token Info (works for some nodes)
+Run: 
+```
+grpcurl -plaintext localhost:8337 quilibrium.node.node.pb.NodeService.GetTokenInfo
+```
+Response:
+```
+{
+  "confirmedTokenSupply": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsuy4PqzEAA=",
+  "unconfirmedTokenSupply": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsuxtRfqwAA=",
+  "ownedTokens": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+  "unconfirmedOwnedTokens": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+}
+```
+Values are encoded, but the ownedTokens and unconfirmedTokens are for sure equal to 0. Needs more decoding studies here.
+
+#### Count of all Q Nodes
+Run: 
+```
+grpcurl -plaintext -max-msg-sz 5000000 localhost:8337 quilibrium.node.node.pb.NodeService.GetPeerInfo | grep peerId | wc -l
+```
+Response:
+```
+11000
+```
+
+#### Get Peer Info
+Run: 
+```
+grpcurl -plaintext -max-msg-sz 5000000 localhost:8337 quilibrium.node.node.pb.NodeService.GetPeerInfo | less
+```
+Response:
+```
+{
+  "peerInfo": [
+    {
+      "peerId": "EiCIlJTLaQ+GE0ElmoCTb1wK/OWfWTzDA9hC1AyAmNNCew==",
+      "multiaddrs": [
+        ""
+      ],
+      "maxFrame": "1439",
+      "timestamp": "1708984499614",
+      "version": "AQIP",
+      "signature": "uOXC/WFc3tCsaqJKplle2q/oeUDGlwZf/ZrDdjWqn/Z3ZBUZZy2jwbB78vhFrNsArVuEw+x9eSWAVTq7ugE4ME5bUNUB4+7Gl6BtV8vPNwqh5NWbfNooKbHDNyees6MEi+VsM04wS4wf147SLiGPxicA",
+      "publicKey": "gMTEXXTwVMd9JGBTdJ3+eh/qIGuYapU+PGe7kg3HUgdlj4Ff8NBMVhHxoN/dYLnmpaquGOcqgKcA",
+      "totalDistance": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAET2HAgKu7BSR42UPY8a2MEk/qOTrCjR9shges9bZvO/Ng=="
+    },
+    {
+      "peerId": "EiA3Xnx1esdF2BJXwEuVFXw+gj5g5ss4ajJBQ3TNXWiAxA==",
+      "multiaddrs": [
+        ""
+      ],
+      "maxFrame": "6783",
+      "timestamp": "1704564573411",
+      "version": "AQIB",
+      "signature": "JOJoCRUmzizAlFjf3dXB8wAeEvFXsXCIl66A/sLu4hjIJktYzvZPAc83abLeG3Zm8WHhuhtnHH4AXHitiWGlqwtFbWCRE6TuDFioemJBKhRgwS3bLF3KIC0yWEcBSTM5hgJCDWe7oCSI2NV8n7mufRUA",
+      "publicKey": "prlfQeX4gLPLOz87HChd1zOWihxXeoVdUBMdBTjNmSYsYAGnJuMmGDdgZoipZWsrgsEbhnjKfa2A",
+      "totalDistance": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHW0BTyd89JROjwc23I0r7qOJ7ROny+L+EWD1n6OHytKKw=="
+    },
+```
+
+## XVI.  FAQ
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+
+#### What's my balance? Why am I still at 0?
+> This question is the most frequently asked of them all. Depending on when you joined in on the project, the answer will vary. At this point, fully-synchronized nodes should start accumulating a balance. We are working to improve synchronization so it's not an incredibly long slog to get there. Everyone who has been participating should see some balance when Dusk launches.
+
+#### How do I know my node is operating properly?
+> You should see the frame number your node is processing continually increase. This may be slow at first due to heavy fork reconciliation – think of each node with a prover key as being able to send valid frames, but the timereel as a means to choose between them. Because we have had many iterations and lots of early networking issues, we may be initial forks that your node must churn through. We're working on improving sync to be smarter about this so you don't have to reconcile all of them.
+
+#### Where do I run a node?
+> Don't run it on IaaS/PaaS providers like AWS/GCP/Azure. The egress fees will eat you alive. If you don't want to/can't run on your own hardware, VPS/ bare metal hosts do well. Be advised: Q uses a lot of bandwidth in this stage.
+
+#### How do I run a node?
+> If you have git and go 1.20 installed, it's just these three steps:
+```
+git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
+cd ceremonyclient/node
+GOEXPERIMENT=arenas go run ./...
+```
+
+> If you don't, follow whatever guide for your operating system to install go 1.20 (MUST be 1.20.X, 1.19- won't work, 1.21+ won't either).
+
+#### I'm getting cannot load arena: malformed module path "arena" when I run it, what am I doing wrong?
+> Wrong version of golang. Make sure you installed 1.20 (and it has priority on your PATH environment variable)
+
+#### I'm getting the error below when I run the -balance command flag, what am I doing wrong?
+
+```
+panic: error getting token info: rpc error: code = Unknown desc = get token info : get highest candidate data clock frame: item not found
+goroutine 1 [running]:
+main.main()
+/root/ceremonyclient/node/main.go:101 +0x745
+exit status 2
+```
+> Nothing. 
+##### -balance tag: 
+> The -balance command tag when calling the GOEXPERIMENT=arenas go run ./... -balance has been deprecated since Dawn v1.2.9. Unless your node was upgraded to the latest version, yet upgraded from a version <1.2.9 (e.g. 1.2.7) (i.e. the very first version your node ran with was one older than 1.2.9), the -balance command tag will not work anymore and will face the error below.
+
+##### GetTokenInfo gRPCurl function: 
+> The same error shows for the GetTokenInfo function if you were to call using gRpcUrl library (see image below)
+
+##### Solution: 
+> You can still see your balance in the logs of a running node. In later releases, it is certain there will be a friendlier way to see a node’s $QUIL balance.
+
+#### Someone is offering me QUIL OTC, is this legit?
+> No. Tokens do not unlock until Dusk, nobody can transfer you QUIL or buy it from you.
+
+#### Who is developing Quilibrium?
+> Officially the core Quil dev team is just Cassie as of right now (making this an oddly third person statement), plus many folks who have submitted PRs to the core project, as well as related projects like Agost with quilibrium-rs, and Sir0uk with the nodekeeper dashboard. If you'd like to join in, there's loads of things to work on, please DM!
+
+#### Wen balance
+> See 1st question
 
 
