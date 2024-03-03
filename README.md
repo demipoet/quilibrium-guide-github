@@ -105,7 +105,7 @@ sudo  rm  go1.20.14.linux-amd64.tar.gz
 ```
 #### Permanently set GO environment variables
 ```
-sudo vi  ~/.bashrc
+sudo vim  ~/.bashrc
 ```
 Press `i` to start inserting text into ~/.bashrc file<br />
 Scroll until the end of the file, and insert the following in new lines at the end:<br />
@@ -115,7 +115,7 @@ GOPATH=$HOME/go
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ```
 Press `esc` to stop the insert-text mode<br />
-Press `shift` + `:wq`, and press `enter` or `return on the keyboard<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 Run:
 ```
 source  ~/.bashrc
@@ -130,7 +130,7 @@ Purpose: to optimize throughput (bandwidth) and latency for large parallel jobs 
 
 Run:
 ```
-vim  /etc/sysctl.conf
+sudo vim  /etc/sysctl.conf
 ```
 Press `i` to start inserting text into ~/.bashrc file<br />
 Scroll until the end of the file, and insert the following in new lines at the end:<br />
@@ -140,7 +140,7 @@ net.core.rmem_max=600000000
 net.core.wmem_max=600000000
 ```
 Press `esc` to stop the insert-text mode<br />
-Press `shift` + `:wq`, and press `enter` or `return on the keyboard<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 Run:
 ```
 sudo  sysctl  -p
@@ -149,6 +149,28 @@ Reboot your VPS
 ```
 reboot
 ```
+You will be disconnected from your VPS as the VPS reboots<br />
+SSH into your VPS again:
+```
+ssh root@<ip_address_of_VPS>
+```
+Enter the root password<br />
 ## Clone the Quilibrium CeremonyClient Repository
+Run:
+```
+cd ~
+git  clone  https://github.com/QuilibriumNetwork/ceremonyclient.git
+```
+Go to the ceremonyclient/node folder
+```
+cd ceremonyclient/node
+```
+## Import your voucher hex
+<b>Note:</b> Only applicable for those who have an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
+Run:
+```
+sudo vim /root/voucher.hex
+```
+
 
 
