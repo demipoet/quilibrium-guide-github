@@ -163,7 +163,7 @@ ssh root@<ip_address_of_VPS>
 ```
 Enter the root password<br />
 
-## Clone the Quilibrium CeremonyClient Repository
+## V. Clone the Quilibrium CeremonyClient Repository
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 Run:
 ```
