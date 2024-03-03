@@ -196,7 +196,8 @@ Run:
 ```
 GOEXPERIMENT=arenas  go  run  ./...  -import-priv-key  `cat /root/voucher.hex`
 ```
-Take note of your Peer ID. It will be one of the last lines in the response, starts with 'Qm' with a label Peer ID.
+Take note of your Peer ID. The Peer ID may act as your `Q Wallet` later on.<br />
+It will be one of the last lines in the response, starts with 'Qm' with a label Peer ID.
 
 ## VII. Configure your Node Network Firewall
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
@@ -227,7 +228,7 @@ Response for the status command should be:
 
 ## VIII. Configure your config.yml
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)
-### Enable gRPC to enable gRPC Function Calls for your Node
+### 1. Enable gRPC to enable gRPC Function Calls for your Node<br/>
 
 <b>Note</b>: This interface, while read-only, is unauthenticated and not rate-limited. It is recommended that you only enable them if you are properly controlling access via firewall or only query via localhost (i.e. if port 8337 is used for gRPC calls, best not to allow it on your firewall configuration later and only trigger gRPC calls on localhost).<br/><br/>
 
@@ -244,7 +245,33 @@ On the line, right about the end of file, there is a field `listenGrpcMultiaddr:
 ```shell
 listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337
 ```
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
+### 2. Enable Stats Collection by Opt-In<br/>
+Go to ceremonyclient/node folder. <br/>
+```
+cd ~/ceremonyclient/node
+```
+Run:
+```shell
+sudo vim  .config/config.yml
+```
+Press `i` to start inserting text into config.yml file<br />
+On the line, right about the middle part of file, there is a field `engine`, append a sub-field called `statsMultiaddr`
+```shell
+engine:
+  statsMultiaddr: "/dns/stats.quilibrium.com/tcp/443"
+```
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
+
+## IX. Safekeep the `Q Wallet` Private Key and Encryption Key
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+
+### 1. keys.yml
+
+### 2. config.yml
 
 
 
