@@ -132,7 +132,7 @@ Run:
 ```
 sudo vim  /etc/sysctl.conf
 ```
-Press `i` to start inserting text into ~/.bashrc file<br />
+Press `i` to start inserting text into /etc/sysctl.conf file<br />
 Scroll until the end of the file, and insert the following in new lines at the end:<br />
 ```
 # Increase buffer sizes for better network performance
@@ -166,11 +166,17 @@ Go to the ceremonyclient/node folder
 cd ceremonyclient/node
 ```
 ## Import your voucher hex
-<b>Note:</b> Only applicable for those who have an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
+<b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
 Run:
 ```
 sudo vim /root/voucher.hex
 ```
-
-
+Press `i` to start inserting text into voucher.hex file<br />
+Copy-paste the 228-character voucher hex into the file<br />
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
+Run:
+```
+GOEXPERIMENT=arenas  go  run  ./...  -import-priv-key  `cat /root/voucher.hex`
+```
 
