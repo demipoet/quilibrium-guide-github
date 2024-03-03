@@ -11,9 +11,16 @@ II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-
 III. [Prerequisite software](#iii-prerequisite-software)<br />
 IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
 V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
-VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional)<br />
+VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional) - Save your Peer ID / Q Wallet<br />
 VII. [Configure your Node Network Firewall](#vii-configure-your-node-network-firewall)<br />
 VIII. [Configure your config.yml](#viii-configure-your-configyml)<br />
+&emsp; 1. [Enable gRPC to enable gRPC Function Calls for your Node](#1-enable-grpc-to-enable-grpc-function-calls-for-your-node)<br />
+&emsp; 2. [Enable Stats Collection by Opt-In](#2-enable-stats-collection-by-opt-in)<br/>
+IX. [Safekeep the `Q Wallet` Private Key and Encryption Key](#ix-safekeep-the-q-wallet-private-key-and-encryption-key)<br/>
+&emsp; 1. [keys.yml](#1-keysyml)<br/>
+&emsp; 2. [config.yml](#2-configyml)<br/>
+X. [Build the `node` Binary in `/root/go/bin` Folder](#x-build-the-node-binary-in-rootgobin-folder)<br/>
+XI. [Create System Service for your Q Node](#xi-create-system-service-for-your-q-node)<br/>
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -270,8 +277,86 @@ Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 ### 1. keys.yml
+Go to ceremonyclient/node folder. <br/>
+```
+cd ~/ceremonyclient/node
+```
+Run:
+```shell
+sudo vim  .config/keys.yml
+```
+Copy the following lines on an external file or note on your personal desktop/laptop.
+```shell
+default-proving-key:
+  id: default-proving-key
+  type: 0
+  privateKey: abcde258a29d0eabcde8eaed9741c404133c35f4d781d5c16dff83d4b55efghije77092b91308b6c5b03f39866e01891e643583e5fb00f3f81f3538e19bc25edb931c6ce5d30df1d76de2b4714d2256f49f8e3a141a114ff049d9b1f2c2d3bfc43ba027bac9077thisisafakeprivatekeyc6c5962c1975fe82980fac3b4aa85c1a8bd8cdf4f5163f01405abcde
+  publicKey: abcde0486a744fc63thisisafakeprivatekeyd8df16af8e287f8bb7fbc9206e24cb7f054a53cacda84fca62337f9e2b3dca20f9121cbxxxxx
+```
+Press `shift` + `:q`, and press `enter` or `return` on the keyboard<br />
 
 ### 2. config.yml
 
+Go to ceremonyclient/node folder. <br/>
+```
+cd ~/ceremonyclient/node
+```
+Run:
+```shell
+sudo vim  .config/config.yml
+```
+Copy the following lines, found at the top of the config.yml file, on an external file or note on your personal desktop/laptop.
+```shell
+key:
+  keyManagerType: file
+  keyManagerFile:
+    path: .config/keys.yml
+    createIfMissing: false
+    encryptionKey: abcde4fbef10d6b75c8a5d3xxxxx8c9298e0561c6xxxxxxef4ad345e279xxxxx
+```
+Press `shift` + `:q`, and press `enter` or `return` on the keyboard<br />
+
+## X. Build the `node` Binary in `/root/go/bin` Folder
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+Run:
+```
+GOEXPERIMENT=arenas  go  install  ./...
+```
+This will build and compile the `node` app binary inside `/root/go/bin/` folder<br/>
+Verify that the node binary is built by running:
+```
+ls /root/go/bin
+```
+It must show
+> node
+
+## XI. Create System Service for your Q Node
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/><br/>
+
+Doing this step allows your node to be run as a system service, whereas in case your node shuts down or gets signal killed for whatever reason, the service will enable auto-restarting your node.<br/><br/>
+
+Run:
+```
+sudo vim /lib/systemd/system/ceremonyclient.service
+```
+Press `i` to start inserting text into ceremonyclient.service file<br />
+Copy and paste the following lines inside the file
+```shell
+[Unit]
+Description=Ceremony Client Go App Service
 
 
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+WorkingDirectory=/root/ceremonyclient/node
+Environment=GOEXPERIMENT=arenas
+ExecStart=/root/go/bin/node ./...
+
+
+[Install]
+WantedBy=multi-user.target
+```
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
