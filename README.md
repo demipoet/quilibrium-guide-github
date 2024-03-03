@@ -1,8 +1,12 @@
  <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
-# Beginner’s Guide - How to Setup a Quilibrium CeremonyClient node - Dawn
+# Beginners' Guide - How to Setup a Quilibrium CeremonyClient node
+Current Version: 1.14.0 (Sunset) as of March 3, 2024
 
-## Secure your Node hardware (VPS)
+## Table of Contents
+I. [Secure your Node hardware (VPS)](#i-secure-your-node-hardware-vps)
+
+## I. Secure your Node hardware (VPS)
 
 ### 1. Get a VPS running Ubuntu 22.04
 
@@ -32,7 +36,7 @@ Downloading and install PuTTY: http://putty.org/  or just use your Terminal if y
 Put your IP address into terminal client & click open Click "Accept" Type "root" & click enter Type your password & click enter <br />
 SSH into your VPS <br />
 
-## SSH for the first time to your new VPS
+## II. SSH for the first time to your new VPS
 To SSH into a VPS, run:
 ```
 ssh root@<ip_address_of_VPS>
@@ -56,7 +60,7 @@ ssh root@<ip_address_of_VPS>
 ```
 Enter the root password.
 
-## Prerequisite software
+## III. Prerequisite software
 
 ### 1. Use root user for this installation
 Make sure you are using the root user as this guide is tailored 
@@ -124,7 +128,7 @@ go version
 It must show:
 > go version go1.20.14 linux/amd64
 
-## Configure Linux network device settings
+## IV. Configure Linux network device settings
 
 Purpose: to optimize throughput (bandwidth) and latency for large parallel jobs typical of networks like Q<br />
 
@@ -165,7 +169,7 @@ Go to the ceremonyclient/node folder
 ```
 cd ceremonyclient/node
 ```
-## Import your voucher hex
+## V. Import your voucher hex (optional)
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
 Run:
 ```
