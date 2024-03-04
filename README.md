@@ -2,7 +2,7 @@
 
 # Beginners' Guide - How to Setup a Quilibrium CeremonyClient node
 Created by Demipoet. Let's connect at [Farcaster](https://warpcast.com/demipoet)! ... Don't have Farcaster account yet? Create your FC account [here](https://warpcast.com/~/invite-page/272717?id=1f9087d2).<br /><br />
-Current Version: 1.14.0 (Sunset) as of March 3, 2024<br />
+Current Version: 1.4.1 (Sunset) as of March 3, 2024<br />
 Want to refer to the old PDF Guide: [link](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
 
 ## Table of Contents
