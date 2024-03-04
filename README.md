@@ -314,7 +314,7 @@ Run:
 ```shell
 sudo vim  .config/config.yml
 ```
-Copy the following lines, found at the top of the config.yml file, on an external file or note on your personal desktop/laptop.
+Copy all text, found in the config.yml file, on an external file or note on your personal desktop/laptop.
 ```shell
 key:
   keyManagerType: file
@@ -322,6 +322,8 @@ key:
     path: .config/keys.yml
     createIfMissing: false
     encryptionKey: abcde4fbef10d6b75c8a5d3xxxxx8c9298e0561c6xxxxxxef4ad345e279xxxxx
+
+rest of the config.yml file
 ```
 Press `shift` + `:q`, and press `enter` or `return` on the keyboard<br />
 
