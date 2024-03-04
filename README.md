@@ -12,6 +12,7 @@ III. [Prerequisite software](#iii-prerequisite-software)<br />
 IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
 V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
 VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional) - Save your Peer ID / Q Wallet<br />
+VI.B. [Run `go run` once to Create your Q Wallet and `.config` folder](#vib-run--go-run--once-to-create-your-q-wallet-and-config-folder)<br/>
 VII. [Configure your Node Network Firewall](#vii-configure-your-node-network-firewall)<br />
 VIII. [Configure your config.yml](#viii-configure-your-configyml)<br />
 &emsp; 1. [Enable gRPC to enable gRPC Function Calls for your Node](#1-enable-grpc-to-enable-grpc-function-calls-for-your-node)<br />
@@ -199,7 +200,7 @@ cd ceremonyclient/node
 ## VI. Import your voucher hex (optional)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
-If you do not have a voucher, skip this section<br/>
+If you do not have a voucher, skip this section and do [Section VI.B.](#vib-run--go-run--once-to-create-your-q-wallet-and-config-folder)<br/>
 Run:
 ```
 sudo vim /root/voucher.hex
@@ -214,6 +215,34 @@ GOEXPERIMENT=arenas  go  run  ./...  -import-priv-key  `cat /root/voucher.hex`
 ```
 Take note of your Peer ID. The Peer ID may act as your `Q Wallet` later on.<br />
 It will be one of the last lines in the response, starts with 'Qm' with a label Peer ID.
+
+## VI.B. Run " `go run` " once to Create your Q Wallet and `.config` folder
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
+<b>Note:</b> Only applicable if you skipped [Section VI](#vi-import-your-voucher-hex-optional), because you do not have an offline voucher, and you are installing a fresh Q Node.
+Run:
+```
+cd ~/ceremonyclient/node
+GOEXPERIMENT=arenas go run ./...
+```
+<br/>
+
+As this will trigger for your Q Node to starup, all you really need right now is for the startup script to create you the `.config` folder inside `~/ceremonyclient/node` - to have the 2 files - `config.yml` and `keys.yml` created.
+<br/><br/>
+
+Once you see the logs start to trail, you would want to stop the node for now. <br/>
+You need to open a new terminal window and SSH into your VPS again as root. <br/>
+Run:
+```
+ps aux
+```
+and look for the PID of the `/root/go/bin/node`.<br/>
+Once you know the PID of the `node` app, run:
+```
+kill -9 <PID>
+```
+
+This will kill the process for the `node` app. You may proceed to the next section.
+
 
 ## VII. Configure your Node Network Firewall
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
