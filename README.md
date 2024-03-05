@@ -22,6 +22,7 @@ IX. [Safekeep the `Q Wallet` Private Key and Encryption Key](#ix-safekeep-the-q-
 &emsp; 2. [config.yml](#2-configyml)<br/>
 X. [Build the `node` Binary in `/root/go/bin` Folder](#x-build-the-node-binary-in-rootgobin-folder)<br/>
 XI. [Create System Service for your Q Node](#xi-create-system-service-for-your-q-node)<br/>
+&emsp; 1. [Limit Node CPU Usage](#1-limit-node-cpu-usage)<br/>
 XII. [Monitor trace/info logs of your Q Node service](#xii-monitor-traceinfo-logs-of-your-q-node-service)<br/>
 XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-service-commands)<br/>
 &emsp; 1. [Start your Q Node](#1-start-your-q-node)<br/>
@@ -397,6 +398,32 @@ ExecStart=/root/go/bin/node ./...
 [Install]
 WantedBy=multi-user.target
 ```
+Press `esc` to stop the insert-text mode<br />
+Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
+
+
+### 1. Limit Node CPU Usage
+
+<b>Rationale</b>: The v1.4.2 update on Sunset has led to an increase in CPU usage. For everyone who is using VPS (including myself), please follow the instructions below to instruct the Q Node to only use a % of provisioned CPU cores
+Open the `ceremonyclient.service` file<br/>
+Run:
+```
+sudo vim /lib/systemd/system/ceremonyclient.service
+```
+Press `i` to start inserting text into ceremonyclient.service file<br />
+Under [Service] add the following lines
+```text
+[Unit]
+Description=Ceremony Client Go App Service
+
+[Service]
+CPUQuota=720%
+
+...rest of file
+```
+> <b>Note</b>:The value for CPUQuota above is calculated by multiplying 80% or 90% by the number of CPU cores.<br/>
+> E.g. If your VPS has 8 cores, you can set it as 8 * 90% = 720%<br/>
+
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
