@@ -38,7 +38,7 @@ XVI. [FAQ](#xvi--faq)<br/>
 
 #### My recommendations
 
-#### Hostinger.com ([My referral link](https://hostinger.ph?REFERRALCODE=1DEMICINCO282))<br/><br/>
+#### Hostinger.com ([My referral link](https://www.hostinger.com/vps-hosting?REFERRALCODE=1DEMICINCO282))<br/><br/>
 I recommend getting the KVM8 for Dawn<br/>
 In USD - KVM 8 costs $18.30/mo <br/>
 
