@@ -517,6 +517,21 @@ Lastly, start your Q Node via the service command, run:
 service ceremonyclient start
 ```
 
+Complete code script:
+```
+service ceremonyclient stop
+cd ~/ceremonyclient
+git fetch origin
+git merge origin
+cd ~/ceremonyclient/node
+GOEXPERIMENT=arenas go clean -v -n -a ./...
+rm /root/go/bin/node
+ls /root/go/bin
+GOEXPERIMENT=arenas  go  install  ./...
+ls /root/go/bin
+service ceremonyclient start
+```
+
 ## XV.  Using gRPCurl For More Information on Q Network
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
