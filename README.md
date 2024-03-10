@@ -29,6 +29,7 @@ XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-s
 &emsp; 2. [Stop your Q Node](#2-stop-your-q-node)<br/>
 &emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
 XIV. [Upgrading your Q Node to latest release](#xiv--upgrading-your-q-node-to-latest-release)<br/>
+&emsp; 1. [Complete upgrade code script](#complete-upgrade-code-script)<br/>
 XV. [Using gRPCurl For More Information on Q Network](#xv--using-grpcurl-for-more-information-on-q-network)<br/>
 XVI. [FAQ](#xvi--faq)<br/>
 
@@ -517,7 +518,7 @@ Lastly, start your Q Node via the service command, run:
 service ceremonyclient start
 ```
 
-Complete code script:
+### Complete upgrade code script
 ```
 service ceremonyclient stop
 cd ~/ceremonyclient
