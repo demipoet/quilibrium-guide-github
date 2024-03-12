@@ -30,7 +30,7 @@ XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-s
 &emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
 XIV. [Upgrading your Q Node to latest release](#xiv--upgrading-your-q-node-to-latest-release)<br/>
 &emsp; 1. [Complete upgrade code script](#complete-upgrade-code-script)<br/>
-XV.  [Purging your node, keeping the same Peer ID](#xv-purging-your-node-keeping-the-same-peer-id)<br/>
+XV.  [Purging your node, keeping the same Peer ID](#xv--purging-your-node-keeping-the-same-peer-id)<br/>
 XVI. [Using gRPCurl For More Information on Q Network](#xvi--using-grpcurl-for-more-information-on-q-network)<br/>
 XVII. [FAQ](#xvii--faq)<br/>
 
