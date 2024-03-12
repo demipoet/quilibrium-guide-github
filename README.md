@@ -30,8 +30,9 @@ XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-s
 &emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
 XIV. [Upgrading your Q Node to latest release](#xiv--upgrading-your-q-node-to-latest-release)<br/>
 &emsp; 1. [Complete upgrade code script](#complete-upgrade-code-script)<br/>
-XV. [Using gRPCurl For More Information on Q Network](#xv--using-grpcurl-for-more-information-on-q-network)<br/>
-XVI. [FAQ](#xvi--faq)<br/>
+XV.  [Purging your node, keeping the same Peer ID](#xv-purging-your-node-keeping-the-same-peer-id)<br/>
+XVI. [Using gRPCurl For More Information on Q Network](#xvi--using-grpcurl-for-more-information-on-q-network)<br/>
+XVII. [FAQ](#xvii--faq)<br/>
 
 ## I. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -533,7 +534,72 @@ ls /root/go/bin
 service ceremonyclient start
 ```
 
-## XV.  Using gRPCurl For More Information on Q Network
+## XV.  Purging your node, keeping the same Peer ID
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
+
+> The motivation for doing this, during this period as of March 12, 2024, is when your Q Node is seemingly stuck at a certain frame during syncing. This can be the case for the very suspect frame _*4067*_.
+> I added this section for those folks who has finally reached the limits of their patience with frame 4067 and want to start a fresh node, built up using the latest Q release (at the moment, 1.4.5).
+>
+> Additional insights:
+> I did this experiment myself and is showing good results. The new node never got stuck at 4067, but gets stuck in other frame numbers. Nevertheless, whenever I see this, I only need to stop and start the node and after some time, it moves on to higher frames.
+
+<b>Note</b>: The steps below assume you have followed this guide to setup your Q node initially. Otherwise, the steps below may not be applicable to your node.<br/><br/>
+
+<b>Here are the steps</b>:<br/><br/>
+
+1. Copy your config.yml and keys.yml into your `/root` folder. command is
+```
+cp /root/ceremonyclient/node/.config/config.yml /root
+cp /root/ceremonyclient/node/.config/keys.yml /root
+```
+
+2. Go to root folder.<br/>
+```
+cd /root
+```
+
+3. Next, delete the whole ceremonyclient folder.<br/>
+<b>IMPORTANT Note</b>: Please make sure that you have the 2 .yml files inside `/root` folder by doing an `ls /root` command.
+```
+rm -rf /root/ceremonyclient
+```
+
+4. Delete the node binary file.
+```
+rm /root/go/bin/node
+```
+
+5. Git clone the repository again.
+```
+git  clone  https://github.com/QuilibriumNetwork/ceremonyclient.git
+```
+
+6. Go to node folder.
+```
+cd ceremonyclient/node
+```
+7. Create a .config directory
+```
+mkdir .config
+```
+8. Copy the config.yml and keys.yml into the newly created .config folder
+```
+cp /root/keys.yml /root/ceremonyclient/node/.config/
+cp /root/config.yml /root/ceremonyclient/node/.config/
+```
+9. Compile the node binary file.
+```
+GOEXPERIMENT=arenas go install ./...
+```
+10. Start the service.
+```
+service ceremonyclient start
+```
+<br/>
+To reiterate, this to me is not the final solution. I hope the next releases for Quilibrium will not have these issues anymore. However, if you still notice your node(s) get stuck in a certain frame, after following the steps above, do try to `service ceremonyclient stop` and `service ceremonyclient start` and do further monitoring.
+
+
+## XVI.  Using gRPCurl For More Information on Q Network
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 <b>Note</b>: This section is not part of the installation or setup process for the Q Node. The commands within this section are used only after you have successfully completed the steps above and you just want to query for more information about your Q Node.
@@ -630,7 +696,7 @@ Response:
     },
 ```
 
-## XVI.  FAQ
+## XVII.  FAQ
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 #### What's my balance? Why am I still at 0?
