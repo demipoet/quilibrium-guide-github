@@ -40,24 +40,18 @@ XVII. [FAQ](#xvii--faq)<br/>
 
 #### My recommendations
 
-#### Hostinger.com ([My referral link](https://hostinger.com/?REFERRALCODE=1DEMICINCO282))<br/><br/>
-I recommend getting the KVM8 for Dawn<br/>
-In USD - KVM 8 costs $18.30/mo <br/>
+<TBD>
 
-##### After buying, go to [Hostinger VPS Plans](https://hpanel.hostinger.com/servers/plans)
-Select KVM 8 only. KVM 2 will not work for the Quilibrium Dawn testnet looks to be especially different from other networks so this requires KVM 8 😉 <br /> It requires if VPS at least 8vCPU Cores and 16GB  RAM
+#### System Requirements
 
-> 8 vCPU Core<br />
-> 32 GB RAM<br />
-> 400 GB NVMe Disk Space<br />
-> 32 TB Bandwidth<br />
-> 1 Snapshot<br />
-> Weekly Backups<br />
+For the Dawn phase, a server must have a minimum of:
+> 16GB of RAM, preferably 32 GB,
+> 250GB of storage, preferably via SSD,
+> 50MBps symmetric bandwidth, ie 50 download, 50 upload
+> For Intel/AMD, the baseline processor is a Skylake processor @ 3.4GHz with 12 dedicated cores.
+> For ARM, the M1 line of Apple is a good reference, but this has to be a dedicated machine.
 
-##### You can select a plan duration (monthly/yearly) after selecting KVM 8 
-Then link your card to pay or pay with crypto <br />
-Note that the discounted rate may only be available on the yearly plan<br />
-Then follow installation instructions<br />
+With Dusk, these minimum requirements will reduce significantly.
 
 ### 2. Connect to your VPS 
 Downloading and install PuTTY: http://putty.org/  or just use your Terminal if you are running MacOS or Linux <br />
