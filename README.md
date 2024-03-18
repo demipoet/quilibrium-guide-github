@@ -38,9 +38,24 @@ XVII. [FAQ](#xvii--faq)<br/>
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 ### 1. Get a VPS running Ubuntu 22.04
 
-#### My recommendations
+#### TOP RECOMMENDATION
 
-<TBD>
+##### Cherryservers
+
+After Cassie has done some intensive testing, and working with the folks over at CherryServers, We are happy to announce that they are offering customized server instances for Q node runners. <br /><br />
+
+CherryServers is a Europe-based crypto-friendly bare metal and cloud provider. We are proud to be one of the few service providers who openly embrace web3 as we believe in the principles of free internet, decentralization, and the freedom of choice without being tied down to any particular vendor. With over 20 years of experience and a strong reputation, we have established several successful partnerships within the blockchain field. We're excited to announce our latest partnership with Quilibrium to assist their node running community by offering stable infrastructure to enable high performance node hosting. We are excited to offer the following configurations, which have been validated for Quilibrium node hosting:<br /><br />
+
+Sign-up link: <b>[link](https://www.cherryservers.com/?affiliate=5I763YKW)</b><br /><br />
+
+* <b>Cloud VDS 4</b>: CPU: 4 x Intel Gold 6230R @ 2.10Ghz (8 vCores), RAM: 32GB, Disk Storage: NVMe 200GB, Backup: 50GB, Bandwidth: 1Gbps uplink, Egress Traffic: 10TB, Ingress unmetered, <b>96.12 USD/monthly</b><br />
+* <b>E3-1240V3</b>: CPU: E3-1240v3, 4c/8t - 3.4GHz, RAM: 16GB ECC DDRIII , Disk Storage: 2x SSD 250GB, OS Disk: SSD 250GB, Backup: 100GB, Bandwidth: 1Gbps uplink, Egress Traffic: 10TB, Ingress unmetered, <b>106.92 USD/monthly</b><br />
+* <b>E3-1240V5</b>: CPU: E3-1240v5, 4c/8t - 3.5GHz, RAM: 32GB ECC DDR4, Disk Storage: 2x SSD 250GB, OS Disk: SSD 250GB, Backup: 100GB, Bandwidth: 3Gbps uplink, Egress Traffic: 30TB, Ingress unmetered, <b>106.81 USD/monthly</b><br />
+* <b>E5-1620V4</b>: CPU: E5-1620v4, 4c/8t - 3.5GHz, RAM: 32GB ECC DDR4, Disk Storage: 2x SSD 250GB, OS Disk: SSD 250GB, Backup: 100GB, Bandwidth: 3Gbps uplink, Egress Traffic: 30TB, Ingress unmetered, <b>124.20 USD/monthly</b><br />
+* <b>E5-1650V3</b>: CPU: E5-1650v3, 6c/12t - 3.5GHz, RAM: 64GB Registered ECC DDR4, Disk Storage: 2x SSD 250GB, OS Disk: SSD 250GB, Backup: 100GB, Bandwidth: 1Gbps uplink, Egress Traffic: 30TB, Ingress unmetered, <b>125.66 USD/monthly</b><br />
+* <b>E5-1650V4</b>: CPU: E5-1650v4, 6c/12t - 3.6GHz, RAM: 64GB Registered ECC DDR4, Disk Storage: 2x SSD 500GB, OS Disk: SSD 500GB, Backup: 100GB, Bandwidth: 3Gbps uplink, Egress Traffic: 30TB, Ingress unmetered, <b>132.68 USD/monthly</b><br />
+* <b>E5-1650V3</b>: CPU: E5-1650v3, 6c/12t - 3.5GHz, RAM: 64GB Registered ECC DDR4, Disk Storage: 2x SSD 250GB, OS Disk: SSD 250GB, Backup: 100GB, Bandwidth: 1Gbps uplink, Egress Traffic: 30TB, Ingress unmetered, <b>125.66 USD/monthly</b><br />
+
 
 #### System Requirements
 
