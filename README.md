@@ -135,7 +135,7 @@ wget  https://go.dev/dl/go1.20.14.linux-arm64.tar.gz
 
 The project support both AMD and ARM.<br/><br/>
 
-BUT if you are using CherryServers, best to use curl command rather than wget.
+<b>BUT if you are using CherryServers</b>, best to use curl command rather than wget.
 ```
 curl -O -L "https://go.dev/dl/go1.20.14.linux-amd64.tar.gz"
 ```
