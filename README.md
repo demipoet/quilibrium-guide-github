@@ -135,14 +135,7 @@ wget  https://go.dev/dl/go1.20.14.linux-arm64.tar.gz
 
 The project support both AMD and ARM.<br/><br/>
 
-<b>BUT if you are using CherryServers</b>, best to use curl command rather than wget.
-```
-curl -O -L "https://go.dev/dl/go1.20.14.linux-amd64.tar.gz"
-```
-OR
-```
-curl -O -L "https://go.dev/dl/go1.20.14.linux-amd64.tar.gz"
-```
+<b>KNOWN ISSUE FOR CherryServers</b>, For some of their IP addresses, Google.com blocks them and this will prevent you from downloading (wget) the go1.20.14 gzip file from the URL above. To solve this, unfortunately, the only way is to cancel your new VDS and order a new one so that you get a new Primary IP address. I know this because I experienced this when I purchased my Cloud VDS4.
 
 #### Extract the zipped (gz) file
 ```
