@@ -132,7 +132,18 @@ OR
 ```
 wget  https://go.dev/dl/go1.20.14.linux-arm64.tar.gz
 ```
-The project support both AMD and ARM.
+
+The project support both AMD and ARM.<br/><br/>
+
+BUT if you are using CherryServers, best to use curl command rather than wget.
+```
+curl -O -L "https://go.dev/dl/go1.20.14.linux-amd64.tar.gz"
+```
+OR
+```
+curl -O -L "https://go.dev/dl/go1.20.14.linux-amd64.tar.gz"
+```
+
 #### Extract the zipped (gz) file
 ```
 sudo tar -xvf go1.20.14.linux-amd64.tar.gz 
