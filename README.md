@@ -3,7 +3,7 @@
 # Beginners' Guide - How to Setup a Quilibrium CeremonyClient node
 Created by Demipoet. Let's connect at [Farcaster](https://warpcast.com/demipoet)! ... Don't have Farcaster account yet? Create your FC account [here](https://warpcast.com/~/invite-page/272717?id=1f9087d2).<br /><br />
 Current Version: 1.4.1 (Sunset) as of March 3, 2024<br />
-Want to refer to the old PDF Guide: [link](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
+Want to refer to the old PDF Guide: [🔗](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
 
 ## Table of Contents
 
@@ -45,6 +45,25 @@ Want to refer to the old PDF Guide: [link](https://drive.google.com/file/d/1atQ2
 |5.|Using gRPCurl For More Information on Q Network - [🔗](#5--using-grpcurl-for-more-information-on-q-network)|
 |6.|FAQ - [🔗](#6--faq)|
 
+# The NEW CLI Commands in Quilibrium 1.5.0
+
+<details>
+ <summary>- expand for details -</summary>
+
+## 1. General Command Syntax
+[Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
+
+The CLI tooling itself will be relatively simple, and the commands can be run as follows (assuming a build in the accompanying /client folder rather than `go run ./...`:
+```
+client [--config=<other path than ../node/.config/>] <app> <cmd> <param1> <param2> <...>
+```
+
+</details>
+
+# Setting up your Quilibrium Node
+
+<details>
+ <summary>-- expand --</summary>
 
 ## 1. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
@@ -454,6 +473,15 @@ CPUQuota=720%
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
+</details>
+
+</details>
+
+# Managing your Quilibrium Node
+
+<details>
+ <summary>-- expand --</summary>
+
 ## 1. Monitor trace/info logs of your Q Node service
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/><br/>
 
@@ -773,5 +801,7 @@ exit status 2
 
 #### Wen balance
 > See 1st question
+
+</details>
 
 
