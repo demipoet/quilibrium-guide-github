@@ -10,12 +10,12 @@ Want to refer to the old PDF Guide: [🔗](https://drive.google.com/file/d/1atQ2
 |No.|The NEW CLI Commands in Quilibrium 1.5.0|
 |---|--------|
 |1.|General Command Syntax - [🔗](#1-general-command-syntax)|
-|2.|Querying Balance - [🔗]()|
-|3.|Querying Individual Coins - [🔗]()|
-|4.|Creating a Pending Transaction - [🔗]()|
-|5.|Accepting a Pending Transaction - [🔗]()|
-|6.|Performing a Mutual Transfer - [🔗]()|
-|7.|Claiming Rewards - [🔗]()|
+|2.|Querying Balance - [🔗](#2-querying-balance)|
+|3.|Querying Individual Coins - [🔗](#3-querying-individual-coins)|
+|4.|Creating a Pending Transaction - [🔗](#4-creating-a-pending-transaction)|
+|5.|Accepting a Pending Transaction - [🔗](#5-accepting-a-pending-transaction)|
+|6.|Performing a Mutual Transfer - [🔗](#6-performing-a-mutual-transfer)|
+|7.|Claiming Rewards - [🔗](#7-claiming-rewards)|
 
 <br/>
 
