@@ -6,35 +6,47 @@ Current Version: 1.4.1 (Sunset) as of March 3, 2024<br />
 Want to refer to the old PDF Guide: [link](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
 
 ## Table of Contents
-I. [Secure your Node hardware (VPS)](#i-secure-your-node-hardware-vps)<br />
-II. [SSH for the first time to your new VPS](#ii-ssh-for-the-first-time-to-your-new-vps)<br />
-III. [Prerequisite software](#iii-prerequisite-software)<br />
-IV. [Configure Linux network device settings](#iv-configure-linux-network-device-settings)<br />
-V. [Clone the Quilibrium CeremonyClient Repository](#v-clone-the-quilibrium-ceremonyclient-repository)<br />
-VI. [Import your Voucher Hex](#vi-import-your-voucher-hex-optional) - Save your Peer ID / Q Wallet<br />
-VI.B. [Run `go run` once to Create your Q Wallet and `.config` folder](#vib-run--go-run--once-to-create-your-q-wallet-and-config-folder)<br/>
-VII. [Configure your Node Network Firewall](#vii-configure-your-node-network-firewall)<br />
-VIII. [Configure your config.yml](#viii-configure-your-configyml)<br />
-&emsp; 1. [Enable gRPC to enable gRPC Function Calls for your Node](#1-enable-grpc-to-enable-grpc-function-calls-for-your-node)<br />
-&emsp; 2. [Enable Stats Collection by Opt-In](#2-enable-stats-collection-by-opt-in)<br/>
-IX. [Safekeep the `Q Wallet` Private Key and Encryption Key](#ix-safekeep-the-q-wallet-private-key-and-encryption-key)<br/>
-&emsp; 1. [keys.yml](#1-keysyml)<br/>
-&emsp; 2. [config.yml](#2-configyml)<br/>
-X. [Build the `node` Binary in `/root/go/bin` Folder](#x-build-the-node-binary-in-rootgobin-folder)<br/>
-XI. [Create System Service for your Q Node](#xi-create-system-service-for-your-q-node)<br/>
-&emsp; 1. [Limit Node CPU Usage](#1-limit-node-cpu-usage)<br/>
-XII. [Monitor trace/info logs of your Q Node service](#xii-monitor-traceinfo-logs-of-your-q-node-service)<br/>
-XIII. [Control your Q Node via service commands](#xiii-control-your-q-node-via-service-commands)<br/>
-&emsp; 1. [Start your Q Node](#1-start-your-q-node)<br/>
-&emsp; 2. [Stop your Q Node](#2-stop-your-q-node)<br/>
-&emsp; 3. [Look at status of your Q Node](#3-look-at-status-of-your-q-node)<br/>
-XIV. [Upgrading your Q Node to latest release](#xiv--upgrading-your-q-node-to-latest-release)<br/>
-&emsp; 1. [Complete upgrade code script](#complete-upgrade-code-script)<br/>
-XV.  [Purging your node, keeping the same Peer ID](#xv--purging-your-node-keeping-the-same-peer-id)<br/>
-XVI. [Using gRPCurl For More Information on Q Network](#xvi--using-grpcurl-for-more-information-on-q-network)<br/>
-XVII. [FAQ](#xvii--faq)<br/>
 
-## I. Secure your Node hardware (VPS)
+|No.|The NEW CLI Commands in Quilibrium 1.5.0|
+|---|--------|
+|1.|General Command Syntax - [🔗]()|
+|2.|Querying Balance - [🔗]()|
+|3.|Querying Individual Coins - [🔗]()|
+|4.|Creating a Pending Transaction - [🔗]()|
+|5.|Accepting a Pending Transaction - [🔗]()|
+|6.|Performing a Mutual Transfer - [🔗]()|
+|7.|Claiming Rewards - [🔗]()|
+
+<br/>
+
+<!-- prettier-ignore -->
+|No.|Setting up your Quilibrium Node|
+|---|--------|
+|1. |Secure your Node hardware (VPS) - [🔗](#1-secure-your-node-hardware-vps)|
+|2.|SSH for the first time to your new VPS - [🔗](#2-ssh-for-the-first-time-to-your-new-vps)|
+|3.|Prerequisite software - [🔗](#3-prerequisite-software)|
+|4.|Configure Linux network device settings - [🔗](#4-configure-linux-network-device-settings)|
+|5.|Clone the Quilibrium CeremonyClient Repository - [🔗](#5-clone-the-quilibrium-ceremonyclient-repository)|
+|6.<br/><br/>6.B.|Import your Voucher Hex - [🔗](#6-import-your-voucher-hex-optional)<br/><br/>&nbsp;&nbsp;- Run _go run_ once to Create your Q Wallet and _.config`_ folder - [🔗](#6b-run--go-run--once-to-create-your-q-wallet-and-config-folder)|
+|7.|Configure your Node Network Firewall - [🔗](#7-configure-your-node-network-firewall)|
+|8.<br/><br/>-<br/><br/>-|Configure your config.yml - [🔗](#8-configure-your-configyml)<br/><br/>&nbsp;&nbsp;- Enable gRPC to enable gRPC Function Calls for your Node - [🔗](#1-enable-grpc-to-enable-grpc-function-calls-for-your-node)<br/><br/>&nbsp;&nbsp;- Enable Stats Collection by Opt-In - [🔗](#2-enable-stats-collection-by-opt-in)|
+|9.<br/><br/>-<br/><br/>-|Safekeep the _Q Wallet_ Private Key and Encryption Key - [🔗](#9-safekeep-the-q-wallet-private-key-and-encryption-key)<br/><br/>&nbsp;&nbsp;- keys.yml - [🔗](#1-keysyml)<br/><br/>&nbsp;&nbsp;- config.yml - [🔗](#2-configyml)|
+|10.|Build the _node_ Binary in _/root/go/bin_ Folder - [🔗](#10-build-the-node-binary-in-rootgobin-folder)|
+|11.<br/><br/>-<br/><br/>-|Create System Service for your Q Node - [🔗](#11-create-system-service-for-your-q-node)<br/><br/>&nbsp;&nbsp;- Limit Node CPU Usage - [🔗](#1-limit-node-cpu-usage)<br/><br/>&nbsp;&nbsp;- Start your Q Node - [🔗](#1-start-your-q-node)|
+
+<br/>
+
+|No.|Managing your Quilibrium Node|
+|---|--------|
+|1.|Monitor trace/info logs of your Q Node service - [🔗](#1-monitor-traceinfo-logs-of-your-q-node-service)|
+|2.<br/><br/>-<br/><br/>-<br/><br/>-|Control your Q Node via service commands - [🔗](#2-control-your-q-node-via-service-commands)<br/><br/>&nbsp;&nbsp;- Start your Q Node - [🔗](#1-start-your-q-node)<br/><br/>&nbsp;&nbsp;- Stop your Q Node - [🔗](#2-stop-your-q-node)<br/><br/>&nbsp;&nbsp;- Check status of your Q Node - [🔗](#3-look-at-status-of-your-q-node)|
+|3.<br/><br/>-|Upgrading your Q Node to latest release - [🔗](#3-upgrading-your-q-node-to-latest-release)<br/><br/>&nbsp;&nbsp;- Complete upgrade code script - [🔗](#complete-upgrade-code-script)|
+|4.|Purging your node, keeping the same Peer ID - [🔗](#4--purging-your-node-keeping-the-same-peer-id)|
+|5.|Using gRPCurl For More Information on Q Network - [🔗](#5--using-grpcurl-for-more-information-on-q-network)|
+|6.|FAQ - [🔗](#6--faq)|
+
+
+## 1. Secure your Node hardware (VPS)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 ### 1. Get a VPS running Ubuntu 22.04
 
@@ -73,7 +85,7 @@ Downloading and install PuTTY: http://putty.org/  or just use your Terminal if y
 Put your IP address into terminal client & click open Click "Accept" Type "root" & click enter Type your password & click enter <br />
 SSH into your VPS <br />
 
-## II. SSH for the first time to your new VPS
+## 2. SSH for the first time to your new VPS
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 To SSH into a VPS, run:
 ```
@@ -98,7 +110,7 @@ ssh root@<ip_address_of_VPS>
 ```
 Enter the root password.
 
-## III. Prerequisite software
+## 3. Prerequisite software
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br />
 ### 1. Use root user for this installation
 Make sure you are using the root user as this guide is tailored 
@@ -170,7 +182,7 @@ go version
 It must show:
 > go version go1.20.14 linux/amd64
 
-## IV. Configure Linux network device settings
+## 4. Configure Linux network device settings
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 Purpose: to optimize throughput (bandwidth) and latency for large parallel jobs typical of networks like Q<br />
 
@@ -202,7 +214,7 @@ ssh root@<ip_address_of_VPS>
 ```
 Enter the root password<br />
 
-## V. Clone the Quilibrium CeremonyClient Repository
+## 5. Clone the Quilibrium CeremonyClient Repository
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 Run:
 ```
@@ -213,7 +225,7 @@ Go to the ceremonyclient/node folder
 ```
 cd ceremonyclient/node
 ```
-## VI. Import your voucher hex (optional)
+## 6. Import your voucher hex (optional)
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 <b>Note:</b> Only applicable for those who has an offline voucher (from April 2023 offline declaration for the Freedom of Internet ceremony).<br />
 If you do not have a voucher, skip this section and do [Section VI.B.](#vib-run--go-run--once-to-create-your-q-wallet-and-config-folder)<br/>
@@ -232,7 +244,7 @@ GOEXPERIMENT=arenas  go  run  ./...  -import-priv-key  `cat /root/voucher.hex`
 Take note of your Peer ID. The Peer ID may act as your `Q Wallet` later on.<br />
 It will be one of the last lines in the response, starts with 'Qm' with a label Peer ID.
 
-## VI.B. Run " `go run` " once to Create your Q Wallet and `.config` folder
+## 6.B. Run " `go run` " once to Create your Q Wallet and `.config` folder
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 <b>Note:</b> Only applicable if you skipped [Section VI](#vi-import-your-voucher-hex-optional), because you do not have an offline voucher, and you are installing a fresh Q Node.
 Run:
@@ -260,7 +272,7 @@ kill -9 <PID>
 This will kill the process for the `node` app. You may proceed to the next section.
 
 
-## VII. Configure your Node Network Firewall
+## 7. Configure your Node Network Firewall
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br /><br />
 Run:
 ```
@@ -287,7 +299,7 @@ Response for the status command should be:
 > 443 (v6)      ALLOW             Anywhere (v6)
 ```
 
-## VIII. Configure your config.yml
+## 8. Configure your config.yml
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)
 ### 1. Enable gRPC to enable gRPC Function Calls for your Node<br/>
 
@@ -327,7 +339,7 @@ engine:
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
-## IX. Safekeep the `Q Wallet` Private Key and Encryption Key
+## 9. Safekeep the `Q Wallet` Private Key and Encryption Key
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 ### 1. keys.yml
@@ -372,7 +384,7 @@ rest of the config.yml file
 ```
 Press `shift` + `:q`, and press `enter` or `return` on the keyboard<br />
 
-## X. Build the `node` Binary in `/root/go/bin` Folder
+## 10. Build the `node` Binary in `/root/go/bin` Folder
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 Run:
 ```
@@ -386,7 +398,7 @@ ls /root/go/bin
 It must show
 > node
 
-## XI. Create System Service for your Q Node
+## 11. Create System Service for your Q Node
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/><br/>
 
 Doing this step allows your node to be run as a system service, whereas in case your node shuts down or gets signal killed for whatever reason, the service will enable auto-restarting your node.<br/><br/>
@@ -442,7 +454,7 @@ CPUQuota=720%
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
-## XII. Monitor trace/info logs of your Q Node service
+## 1. Monitor trace/info logs of your Q Node service
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/><br/>
 
 Run:
@@ -452,7 +464,7 @@ sudo journalctl -u ceremonyclient.service -f --no-hostname -o cat
 While the `ceremonyclient` system service is not started, nothing will be shown and that is okay<br/>
 Just maintain this terminal window while you use another window to start your service (in next [Section XIII.1](#1-start-your-q-node))
 
-## XIII. Control your Q Node via service commands
+## 2. Control your Q Node via service commands
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 ### 1. Start your Q Node
 Run:
@@ -475,7 +487,7 @@ Run:
 service ceremonyclient status
 ```
 
-## XIV.  Upgrading your Q Node to latest release
+## 3.  Upgrading your Q Node to latest release
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 First, run:
 ```
@@ -547,7 +559,7 @@ ls /root/go/bin
 service ceremonyclient start
 ```
 
-## XV.  Purging your node, keeping the same Peer ID
+## 4.  Purging your node, keeping the same Peer ID
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 > The motivation for doing this, during this period as of March 12, 2024, is when your Q Node is seemingly stuck at a certain frame during syncing. This can be the case for the very suspect frame _*4067*_.
@@ -612,7 +624,7 @@ service ceremonyclient start
 To reiterate, this to me is not the final solution. I hope the next releases for Quilibrium will not have these issues anymore. However, if you still notice your node(s) get stuck in a certain frame, after following the steps above, do try to `service ceremonyclient stop` and `service ceremonyclient start` and do further monitoring.
 
 
-## XVI.  Using gRPCurl For More Information on Q Network
+## 5.  Using gRPCurl For More Information on Q Network
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 <b>Note</b>: This section is not part of the installation or setup process for the Q Node. The commands within this section are used only after you have successfully completed the steps above and you just want to query for more information about your Q Node.
@@ -709,7 +721,7 @@ Response:
     },
 ```
 
-## XVII.  FAQ
+## 6.  FAQ
 [Return to top](#beginners-guide---how-to-setup-a-quilibrium-ceremonyclient-node)<br/>
 
 #### What's my balance? Why am I still at 0?
