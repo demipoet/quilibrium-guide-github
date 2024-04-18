@@ -9,7 +9,7 @@ Want to refer to the old PDF Guide: [🔗](https://drive.google.com/file/d/1atQ2
 
 |No.|The NEW CLI Commands in Quilibrium 1.5.0|
 |---|--------|
-|1.|General Command Syntax - [🔗]()|
+|1.|General Command Syntax - [🔗](#1-general-command-syntax)|
 |2.|Querying Balance - [🔗]()|
 |3.|Querying Individual Coins - [🔗]()|
 |4.|Creating a Pending Transaction - [🔗]()|
