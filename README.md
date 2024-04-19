@@ -2,7 +2,7 @@
 
 # Beginners' Guide - How to Setup a Quilibrium CeremonyClient node
 Created by Demipoet. Let's connect at [Farcaster](https://warpcast.com/demipoet)! ... Don't have Farcaster account yet? Create your FC account [here](https://warpcast.com/~/invite-page/272717?id=1f9087d2).<br /><br />
-Current Version: 1.4.1 (Sunset) as of March 3, 2024<br />
+Current Version: 1.4.16 (Sunset) as of April 18, 2024<br />
 Want to refer to the old PDF Guide: [🔗](https://drive.google.com/file/d/1atQ2Gb8vLzqxiS2cqRAp9ojFNDJup3TU/view?usp=sharing)<br />
 
 ## Table of Contents
@@ -32,7 +32,7 @@ Want to refer to the old PDF Guide: [🔗](https://drive.google.com/file/d/1atQ2
 |8.<br/><br/>-<br/><br/>-|Configure your config.yml - [🔗](#8-configure-your-configyml)<br/><br/>&nbsp;&nbsp;- Enable gRPC to enable gRPC Function Calls for your Node - [🔗](#1-enable-grpc-to-enable-grpc-function-calls-for-your-node)<br/><br/>&nbsp;&nbsp;- Enable Stats Collection by Opt-In - [🔗](#2-enable-stats-collection-by-opt-in)|
 |9.<br/><br/>-<br/><br/>-|Safekeep the _Q Wallet_ Private Key and Encryption Key - [🔗](#9-safekeep-the-q-wallet-private-key-and-encryption-key)<br/><br/>&nbsp;&nbsp;- keys.yml - [🔗](#1-keysyml)<br/><br/>&nbsp;&nbsp;- config.yml - [🔗](#2-configyml)|
 |10.|Build the _node_ Binary in _/root/go/bin_ Folder - [🔗](#10-build-the-node-binary-in-rootgobin-folder)|
-|11.<br/><br/>-<br/><br/>-|Create System Service for your Q Node - [🔗](#11-create-system-service-for-your-q-node)<br/><br/>&nbsp;&nbsp;- Limit Node CPU Usage - [🔗](#1-limit-node-cpu-usage)<br/><br/>&nbsp;&nbsp;- Start your Q Node - [🔗](#1-start-your-q-node)|
+|11.<br/><br/>-|Create System Service for your Q Node - [🔗](#11-create-system-service-for-your-q-node)<br/><br/>&nbsp;&nbsp;- Start your Q Node - [🔗](#1-start-your-q-node)|
 
 <br/>
 
@@ -557,32 +557,6 @@ ExecStart=/root/go/bin/node ./...
 [Install]
 WantedBy=multi-user.target
 ```
-Press `esc` to stop the insert-text mode<br />
-Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
-
-
-### 1. Limit Node CPU Usage
-
-<b>Rationale</b>: The v1.4.2 update on Sunset has led to an increase in CPU usage. For everyone who is using VPS (including myself), please follow the instructions below to instruct the Q Node to only use a % of provisioned CPU cores
-Open the `ceremonyclient.service` file<br/>
-Run:
-```
-sudo vim /lib/systemd/system/ceremonyclient.service
-```
-Press `i` to start inserting text into ceremonyclient.service file<br />
-Under [Service] add the following lines
-```text
-[Unit]
-Description=Ceremony Client Go App Service
-
-[Service]
-CPUQuota=720%
-
-...rest of file
-```
-> <b>Note</b>:The value for CPUQuota above is calculated by multiplying 80% or 90% by the number of CPU cores.<br/>
-> E.g. If your VPS has 8 cores, you can set it as 8 * 90% = 720%<br/>
-
 Press `esc` to stop the insert-text mode<br />
 Press `shift` + `:wq`, and press `enter` or `return` on the keyboard<br />
 
