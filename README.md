@@ -393,13 +393,14 @@ Once you see the logs start to trail, you would want to stop the node for now. <
 You need to open a new terminal window and SSH into your VPS again as root. <br/>
 Run:
 ```
-ps aux
-```
-and look for the PID of the `/root/go/bin/node`.<br/>
-Once you know the PID of the `node` app, run:
-```
+ps aux | grep /root/go/bin/node
 kill -9 <PID>
+or
+
+pkill -f "/root/go/bin/node"
 ```
+<br/>
+
 
 This will kill the process for the `node` app. You may proceed to the next section.
 
